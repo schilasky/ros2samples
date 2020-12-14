@@ -14,11 +14,11 @@ find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
 
-add_executable(publisher_string main.cpp)
-ament_target_dependencies(publisher_string rclcpp std_msgs)
+add_executable(${PROJECT_NAME} main.cpp)
+ament_target_dependencies(${PROJECT_NAME} rclcpp std_msgs)
 
 install(TARGETS
-  publisher_string
+  ${PROJECT_NAME}
   DESTINATION lib/${PROJECT_NAME}
 )
 
