@@ -9,16 +9,13 @@ public:
   StringSubscriber()
   : Node("string_subscriber")
   {
-    subscription_ = this->create_subscription<std_msgs::msg::String>(
+    auto subscription_ = this->create_subscription<std_msgs::msg::String>(
       "String",
       10,
-      [this](std_msgs::msg::String::UniquePtr msg) {
+      [this](std_msgs::msg::String::UniquePtr /* msg */) {
         RCLCPP_INFO(this->get_logger(), "Received a message");
       });
   }
-
-private:
-  rclcpp::Subscription<std_msgs::msg::String>::SharedPtr subscription_;
 };
 
 int main(int argc, char * argv[])

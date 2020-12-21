@@ -21,14 +21,14 @@ public:
         this->publisher_->publish(this->message_);
       };
       
-    timer_ = this->create_wall_timer(100ms, timer_callback);
+    auto timer_ = this->create_wall_timer(100ms, timer_callback);
   }
 
-  void FillMessage(sensor_msgs::msg::PointCloud2& msg)
+  static void FillMessage(sensor_msgs::msg::PointCloud2& msg)
   {
     const size_t   POINTS     = 4096;
     const uint32_t POINT_STEP = 256;
-    msg.header.frame_id = 123;
+    msg.header.frame_id = "id";
     //msg.header.stamp = 456;
     msg.fields.resize(5);
     msg.fields[0].name = "x";
@@ -72,7 +72,6 @@ public:
   }
 
 private:
-  rclcpp::TimerBase::SharedPtr                                 timer_;
   rclcpp::Publisher<sensor_msgs::msg::PointCloud2>::SharedPtr  publisher_;
   sensor_msgs::msg::PointCloud2                                message_;
 };

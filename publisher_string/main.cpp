@@ -20,11 +20,10 @@ public:
         this->publisher_->publish(this->message_);
       };
       
-    timer_ = this->create_wall_timer(100ms, timer_callback);
+    auto timer_ = this->create_wall_timer(100ms, timer_callback);
   }
 
 private:
-  rclcpp::TimerBase::SharedPtr                         timer_;
   rclcpp::Publisher<std_msgs::msg::String>::SharedPtr  publisher_;
   std_msgs::msg::String                                message_;
 };

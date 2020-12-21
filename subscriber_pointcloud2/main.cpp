@@ -7,16 +7,13 @@ public:
   PointCloudSubscriber()
   : Node("pointcloud_subscriber")
   {
-    subscription_ = this->create_subscription<sensor_msgs::msg::PointCloud2>(
+    auto subscription_ = this->create_subscription<sensor_msgs::msg::PointCloud2>(
       "PointCloud2",
       10,
-      [this](sensor_msgs::msg::PointCloud2::UniquePtr msg) {
+      [this](sensor_msgs::msg::PointCloud2::UniquePtr /* msg */) {
         RCLCPP_INFO(this->get_logger(), "Received a message");
       });
   }
-
-private:
-  rclcpp::Subscription<sensor_msgs::msg::PointCloud2>::SharedPtr subscription_;
 };
 
 int main(int argc, char * argv[])
